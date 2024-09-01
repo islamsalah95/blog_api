@@ -13,8 +13,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->job(new \App\Jobs\DeleteOldPosts)->everyFiveMinutes();
-        $schedule->job(new \App\Jobs\FetchAndLogRandomUser)->everyFiveMinutes();
+        $schedule->job(new \App\Jobs\DeleteOldPosts)->daily();
+        $schedule->job(new \App\Jobs\FetchAndLogRandomUser)->everySixHours();
 
 
     }

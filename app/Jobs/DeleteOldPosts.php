@@ -21,13 +21,10 @@ class DeleteOldPosts implements ShouldQueue
      */
     public function handle()
     {
-        // Get the date 30 days ago
         $thirtyDaysAgo = Carbon::now()->subDays(30);
 
-        // Retrieve all posts that were softly deleted more than 30 days ago
         $oldPosts = Post::onlyTrashed()->where('deleted_at', '<=', $thirtyDaysAgo)->get();
 
-        // Force delete the posts
         foreach ($oldPosts as $post) {
             $post->forceDelete();
         }
